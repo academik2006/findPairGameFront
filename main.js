@@ -24,13 +24,16 @@ function flipCard() {
     document.getElementById("score__result").innerHTML = "You steps:" + " " + Math.floor(scoreCount/2) + "Steps";
     if (scoreCount/2 <= 6) {
         document.getElementById("prize").innerHTML = "You have 20% discount";
-        document.getElementById("benefit").innerHTML = randomOne() + "20" + randomString + codeDate;
+        //document.getElementById("benefit").innerHTML = randomOne() + "20" + randomString + codeDate;
+        document.getElementById("benefit").innerHTML = "11125455451415555555";
     } else if (scoreCount/2 > 6 && scoreCount/2 <= 10) {
         document.getElementById("prize").innerHTML = "You have 15% discount";
-        document.getElementById("benefit").innerHTML = randomOne() + "15" + randomString + codeDate;
+        //document.getElementById("benefit").innerHTML = randomOne() + "15" + randomString + codeDate;
+        document.getElementById("benefit").innerHTML = "000000000";
     } else {
         document.getElementById("prize").innerHTML = "You have 15% discount";
-        document.getElementById("benefit").innerHTML = randomOne() + "15" + randomString + codeDate;
+        //document.getElementById("benefit").innerHTML = randomOne() + "15" + randomString + codeDate;
+        document.getElementById("benefit").innerHTML = "111111";
     }
     if (lockBoard) return;
     if (this === firstCard) return;

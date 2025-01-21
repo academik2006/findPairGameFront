@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/telegram_game_front.iml" filepath="$PROJECT_DIR$/.idea/telegram_game_front.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/findPairGameFront.iml" filepath="$PROJECT_DIR$/.idea/findPairGameFront.iml" />
     </modules>
   </component>
 </project>

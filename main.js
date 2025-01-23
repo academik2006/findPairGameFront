@@ -1,13 +1,10 @@
 
 // Game for my repository
 const cards = document.querySelectorAll('.memory-card');
-const fs = require('fs');
-const path = require('path');
+
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
-const CHAT_ID = '952205189';
-const DISCOUNT = '10000000';
 
 const TelegramBot = require('node-telegram-bot-api');
 
@@ -17,8 +14,6 @@ const bot = new TelegramBot(token, { polling: true });
 function sendDiscountEvent(chatId, discount) {
   bot.sendMessage(chatId, `Игра окончена. Ваша скидка: ${discount}`);
 }
-
-
 
 
 let randomAbc = "lehaturebashitkur";
@@ -34,7 +29,7 @@ let codeDate = day + month;
 
 let scoreCount = 0;
 
-openFile()
+//openFile()
 
 function flipCard() {
     scoreCount++;
@@ -128,8 +123,7 @@ let start = document.getElementById('start');
 
 function hidePopup() {
     popup.style.opacity = "0"
-    popup.style.visibility = "hidden"
-    sendDiscountEvent(CHAT_ID, DISCOUNT);
+    popup.style.visibility = "hidden"    
 }
 
 start.addEventListener('click', hidePopup);
@@ -139,6 +133,12 @@ let popupend = document.getElementById('popup__end');
 function showPopup() {
     popupend.style.opacity = "1"
     popupend.style.visibility = "visible"
+    try {
+        sendDiscountEvent(CHAT_ID, DISCOUNT);
+    } catch {
+        console.log('Ошибка отпраки сообщения')
+    }
+    
 }
 
 function randomOne() {

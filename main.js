@@ -18,7 +18,30 @@ let codeDate = day + month;
 
 let scoreCount = 0;
 
+const axios = require('axios');
+
+const token = '8072764730:AAGIydJzdHG1odoDvovRbCMkqRM7HfhxIhQ';
+const chatId = '952205189';
+
+function sendMessage(text) {
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+  
+    axios.post(url, {
+      chat_id: chatId,
+      text: text
+    })
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+
+  
+
 function flipCard() {
+    sendMessage('Привет, мир!');
     scoreCount++;
     document.getElementById("score__now").innerHTML = "Steps:" + Math.floor(scoreCount/2);
     document.getElementById("score__result").innerHTML = "You steps:" + " " + Math.floor(scoreCount/2) + "Steps";
@@ -111,16 +134,3 @@ function showPopup() {
 function randomOne() {
     return Math.floor(Math.random() * 100000);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,10 +1,25 @@
 
 // Game for my repository
 const cards = document.querySelectorAll('.memory-card');
-
+const fs = require('fs');
+const path = require('path');
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
+const CHAT_ID = '952205189';
+const DISCOUNT = '10000000';
+
+const TelegramBot = require('node-telegram-bot-api');
+
+const token = '8072764730:AAGIydJzdHG1odoDvovRbCMkqRM7HfhxIhQ';
+const bot = new TelegramBot(token, { polling: true });
+
+function sendDiscountEvent(chatId, discount) {
+  bot.sendMessage(chatId, `Игра окончена. Ваша скидка: ${discount}`);
+}
+
+
+
 
 let randomAbc = "lehaturebashitkur";
 let randomString = "";
@@ -18,6 +33,9 @@ let day = date.getDate().toString();
 let codeDate = day + month;
 
 let scoreCount = 0;
+
+openFile()
+
 function flipCard() {
     scoreCount++;
     document.getElementById("score__now").innerHTML = "Steps:" + Math.floor(scoreCount/2);
@@ -69,6 +87,19 @@ function disableCards() {
     resetBoard();
 }
 
+function openFile() {
+    const filePath = path.join(__dirname, 'promocode1.txt');
+  
+    fs.open(filePath, 'r+', (err, fd) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+  
+      console.log('Файл открыт');
+    });
+  }
+
 function unflipCards() {
     lockBoard = true;
     setTimeout(() => {
@@ -98,6 +129,7 @@ let start = document.getElementById('start');
 function hidePopup() {
     popup.style.opacity = "0"
     popup.style.visibility = "hidden"
+    sendDiscountEvent(CHAT_ID, DISCOUNT);
 }
 
 start.addEventListener('click', hidePopup);

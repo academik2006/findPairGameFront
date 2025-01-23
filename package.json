@@ -19,6 +19,9 @@
   "homepage": "https://github.com/academik2006/findPairGameFront#readme",
   "description": "",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "node-telegram-bot-api": "^0.66.0",
+    "path": "^0.12.7"
   }
 }

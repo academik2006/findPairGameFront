@@ -1,6 +1,9 @@
 // Game for my repository
 const cards = document.querySelectorAll('.memory-card');
 
+const token = '8072764730:AAGIydJzdHG1odoDvovRbCMkqRM7HfhxIhQ';
+const chatId = '952205189';
+
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
@@ -16,32 +19,26 @@ let month = (date.getMonth() + 1).toString();
 let day = date.getDate().toString();
 let codeDate = day + month;
 
+
 let scoreCount = 0;
-
-const axios = require('axios');
-
-const token = '8072764730:AAGIydJzdHG1odoDvovRbCMkqRM7HfhxIhQ';
-const chatId = '952205189';
 
 function sendMessage(text) {
     const url = `https://api.telegram.org/bot${token}/sendMessage`;
   
-    axios.post(url, {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log(xhr.responseText);
+      }
+    };
+    xhr.send(JSON.stringify({
       chat_id: chatId,
       text: text
-    })
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
-
-  
-
-function flipCard() {
-    sendMessage('Привет, мир!');
+    }));
+ }  
+function flipCard() {    
     scoreCount++;
     document.getElementById("score__now").innerHTML = "Steps:" + Math.floor(scoreCount/2);
     document.getElementById("score__result").innerHTML = "You steps:" + " " + Math.floor(scoreCount/2) + "Steps";
@@ -128,7 +125,9 @@ start.addEventListener('click', hidePopup);
 let popupend = document.getElementById('popup__end');
 function showPopup() {
     popupend.style.opacity = "1"
-    popupend.style.visibility = "visible"    
+    popupend.style.visibility = "visible"
+    sendMessage('Вы выиграли'); 
+    sendMessage('/win1');   
 }
 
 function randomOne() {
